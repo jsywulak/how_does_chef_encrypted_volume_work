@@ -1,0 +1,159 @@
+{
+    "Parameters": {
+    "Resources": {
+        "myStack": {
+            "Type": "AWS::OpsWorks::Stack",
+            "Properties": {
+                "Name": {
+                    "Ref": "AWS::StackName"
+                },
+                "ServiceRoleArn": {
+                    "Fn::GetAtt": [
+                        "OpsWorksServiceRole",
+                        "Arn"
+                    ]
+                },
+                "DefaultInstanceProfileArn": {
+                    "Fn::GetAtt": [
+                        "OpsWorksInstanceProfile",
+                        "Arn"
+                    ]
+                },
+                "CustomCookbooksSource": {
+                  "Type": "git",
+                  "Url": "https://github.com/jsywulak/how_does_chef_encrypted_volume_work.git"
+                },
+                "UseCustomCookbooks": "true",
+                "CustomJson": {
+                    "deploy": {
+                        "encrypted_volume":{
+                            "mounts":{
+                                "/encrypted":{
+                                    "volume":"/dev/sda2",
+                                    "fstype":"ext2"
+                                }
+                            }
+                        }
+                    }
+                },
+                "DefaultOs": "Ubuntu 12.04 LTS",
+                "DefaultSshKeyName": "jonny-prod-uswest2"
+            }
+        },
+        "myLayer": {
+            "Type": "AWS::OpsWorks::Layer",
+            "DependsOn": "myApp",
+            "Properties": {
+                "StackId": {
+                    "Ref": "myStack"
+                },
+                "Name": "custom",
+                "Type": "custom",
+                "Shortname": "custom",
+                "EnableAutoHealing": "true",
+                "AutoAssignElasticIps": "false",
+                "AutoAssignPublicIps": "true",
+                "Packages": [
+                    "nodejs",
+                    "sqlite3"
+                ],
+                "CustomRecipes": {
+                    "Deploy": [
+                        "recipe[encrypted_volume]"
+                    ]
+                }
+            }
+        },
+        "myInstance1": {
+            "Type": "AWS::OpsWorks::Instance",
+            "Properties": {
+                "StackId": {
+                    "Ref": "myStack"
+                },
+                "LayerIds": [
+                    {
+                        "Ref": "myLayer"
+                    }
+                ],
+                "InstallUpdatesOnBoot": true,
+                "Os": "Ubuntu 12.04 LTS",
+                "InstanceType": "m1.large",
+                "RootDeviceType": "ebs",
+                "Architecture": "x86_64"
+            }
+        },
+
+        "OpsWorksServiceRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "opsworks.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "Path": "/",
+                "Policies": [
+                    {
+                        "PolicyName": "opsworks-service",
+                        "PolicyDocument": {
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ec2:*",
+                                        "iam:PassRole",
+                                        "cloudwatch:GetMetricStatistics",
+                                        "elasticloadbalancing:*"
+                                    ],
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "OpsWorksInstanceRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "ec2.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "Path": "/"
+            }
+        },
+        "OpsWorksInstanceProfile": {
+            "Type": "AWS::IAM::InstanceProfile",
+            "Properties": {
+                "Path": "/",
+                "Roles": [
+                    {
+                        "Ref": "OpsWorksInstanceRole"
+                    }
+                ]
+            }
+        }
+    }
+}
