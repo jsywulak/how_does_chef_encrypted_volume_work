@@ -1,5 +1,4 @@
 {
-    "Parameters": {
     "Resources": {
         "myStack": {
             "Type": "AWS::OpsWorks::Stack",
@@ -20,17 +19,17 @@
                     ]
                 },
                 "CustomCookbooksSource": {
-                  "Type": "git",
-                  "Url": "https://github.com/jsywulak/how_does_chef_encrypted_volume_work.git"
+                    "Type": "git",
+                    "Url": "https://github.com/jsywulak/how_does_chef_encrypted_volume_work.git"
                 },
                 "UseCustomCookbooks": "true",
                 "CustomJson": {
                     "deploy": {
-                        "encrypted_volume":{
-                            "mounts":{
-                                "/encrypted":{
-                                    "volume":"/dev/sda2",
-                                    "fstype":"ext2"
+                        "encrypted_volume": {
+                            "mounts": {
+                                "/encrypted": {
+                                    "volume": "/dev/sda2",
+                                    "fstype": "ext2"
                                 }
                             }
                         }
@@ -82,7 +81,6 @@
                 "Architecture": "x86_64"
             }
         },
-
         "OpsWorksServiceRole": {
             "Type": "AWS::IAM::Role",
             "Properties": {
