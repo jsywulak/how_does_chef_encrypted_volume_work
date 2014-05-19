@@ -36,7 +36,7 @@
                     }
                 },
                 "DefaultOs": "Ubuntu 12.04 LTS",
-                "DefaultSshKeyName": "jonny-prod-uswest2"
+                "DefaultSshKeyName": "jonny-labs-west2"
             }
         },
         "myLayer": {
