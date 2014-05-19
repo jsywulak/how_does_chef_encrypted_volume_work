@@ -45,9 +45,9 @@
                 "StackId": {
                     "Ref": "myStack"
                 },
-                "Name": "custom",
+                "Name": "test encryption stack instance",
                 "Type": "custom",
-                "Shortname": "custom",
+                "Shortname": "test",
                 "EnableAutoHealing": "true",
                 "AutoAssignElasticIps": "false",
                 "AutoAssignPublicIps": "true",
@@ -57,7 +57,7 @@
                 ],
                 "CustomRecipes": {
                     "Deploy": [
-                        "recipe[encrypted_volume]"
+                        "encrypted_volume"
                     ]
                 }
             }
