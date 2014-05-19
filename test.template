@@ -1,4 +1,5 @@
 {
+    "Description" : "Messing around the chef-encrypted_volume cookbook",
     "Resources": {
         "myStack": {
             "Type": "AWS::OpsWorks::Stack",
