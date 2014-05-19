@@ -41,7 +41,6 @@
         },
         "myLayer": {
             "Type": "AWS::OpsWorks::Layer",
-            "DependsOn": "myApp",
             "Properties": {
                 "StackId": {
                     "Ref": "myStack"
