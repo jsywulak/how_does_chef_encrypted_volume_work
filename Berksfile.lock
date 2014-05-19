@@ -1,0 +1,12 @@
+{
+  "sources": {
+    "chef-encrypted_volume": {
+      "locked_version": "0.1.0",
+      "git": "https://github.com/risk-io/chef-encrypted_volume",
+      "ref": "e8a724f380446185680f0329a0e8caa7b8106be0"
+    },
+    "chef-vault": {
+      "locked_version": "1.0.4"
+    }
+  }
+}

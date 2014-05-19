@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "chef-vault": {
+      "path": "."
+    },
+    "test": {
+      "path": "./test/fixtures/cookbooks/test"
+    }
+  }
+}
