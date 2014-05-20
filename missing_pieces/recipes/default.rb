@@ -24,14 +24,3 @@ ec2_instance_id = opsworks.describe_instances(instance_ids: [opsworks_instance_i
 instance = ec2.instances.select{ |i| i.id == ec2_instance_id }.first
 
 volume.attach_to(instance, 'xvdf')
-
-
-
-
-
-  instance_id = nil
-  cfn.describe_stack_resources(stack_name: stack_name).stack_resources.each do |resource|
-    if resource.resource_type == "AWS::OpsWorks::Instance"
-      instance_id = cfn.describe_stack_resource(stack_name: stack_name, logical_resource_id: resource.logical_resource_id).stack_resource_detail.physical_resource_id
-    end
-  end
