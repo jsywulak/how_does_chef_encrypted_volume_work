@@ -140,7 +140,20 @@
                         }
                     ]
                 },
-                "Path": "/"
+                "Path": "/",
+                "Policies" : {
+                        "PolicyName": "opsworks-service",
+                        "PolicyDocument": {
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": "*",
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    }
+                }
             }
         },
         "OpsWorksInstanceProfile": {
