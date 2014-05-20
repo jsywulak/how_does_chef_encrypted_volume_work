@@ -13,20 +13,19 @@ end
 
 # find the volume
 require 'aws-sdk'
-volumes = AWS::EC2.new(region: 'us-west-2').volumes
+ec2 = AWS::EC2.new(region: 'us-west-2')
+volumes = ec2.volumes
 volume = volumes.select {|v| v.id == node[:volume]}.first
 cfn = AWS::CloudFormation.new(region: 'us-west-2')
-stack = cfn.stacks.select{|c| c.name == node[:stack_name]}
-ops_instance_id = stack.resources.select { |r| r.resource_type == "AWS::OpsWorks::Instance"}.stack_resource_detail.physical_resource_id
+stack = cfn.stacks.select{|c| c.name == node[:stack_name]}.first
+ops_instance_id = stack.resources.select { |r| r.resource_type == "AWS::OpsWorks::Instance"}.first.physical_resource_id
 ops = AWS::OpsWorks.new(region: 'us-east-1').client
-ops.describe_instances(instance_ids: [stack.ops_instance_id])[:instances].first[:ec2_instance_id]
+ops.describe_instances(instance_ids: [ops_instance_id])[:instances].first[:ec2_instance_id]
 
 # attach the volume
-ec2_instance_id = opsworks.describe_instances(instance_ids: [opsworks_instance_id])[:instances].first[:ec2_instance_id]
+ec2_instance_id = ops.describe_instances(instance_ids: [ops_instance_id])[:instances].first[:ec2_instance_id]
 instance = ec2.instances.select{ |i| i.id == ec2_instance_id }.first
-
 volume.attach_to(instance, 'xvdf')
 
 # and then go on to encrypt the volume
-
 # but seriously don't use this anywhere
