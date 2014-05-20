@@ -20,6 +20,7 @@
 package "cryptsetup"
 
 node['encrypted_volume']['mounts'].each_pair do |mount,options|
+  Chef::Log.info "Processing #{mount} with ${options}"
   encrypted_volume mount do
     volume        options['volume']
     fstype        options['fstype']        if options['fstype']
