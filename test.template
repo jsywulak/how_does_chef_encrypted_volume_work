@@ -113,12 +113,7 @@
                             "Statement": [
                                 {
                                     "Effect": "Allow",
-                                    "Action": [
-                                        "ec2:*",
-                                        "iam:PassRole",
-                                        "cloudwatch:GetMetricStatistics",
-                                        "elasticloadbalancing:*"
-                                    ],
+                                    "Action": "*",
                                     "Resource": "*"
                                 }
                             ]

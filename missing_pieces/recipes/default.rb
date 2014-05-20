@@ -24,3 +24,7 @@ ec2_instance_id = opsworks.describe_instances(instance_ids: [opsworks_instance_i
 instance = ec2.instances.select{ |i| i.id == ec2_instance_id }.first
 
 volume.attach_to(instance, 'xvdf')
+
+# and then go on to encrypt the volume
+
+# but seriously don't use this anywhere
