@@ -25,14 +25,12 @@
                 },
                 "UseCustomCookbooks": "true",
                 "CustomJson": {
-                    "deploy": {
-                        "encrypted_volume": {
-                            "mounts": {
-                                "/": {
-                                    "volume": "/dev/xvda1",
-                                    "fstype": "ext2",
-                                    "passphrase": "P4ssw0rd!"
-                                }
+                    "encrypted_volume": {
+                        "mounts": {
+                            "/": {
+                                "volume": "/dev/xvda1",
+                                "fstype": "ext2",
+                                "passphrase": "P4ssw0rd!"
                             }
                         }
                     }
