@@ -64,7 +64,7 @@
                 ],
                 "CustomRecipes": {
                     "Deploy": [
-                        "encrypted_volume"
+                        "missing_pieces","encrypted_volume"
                     ]
                 }
             }
