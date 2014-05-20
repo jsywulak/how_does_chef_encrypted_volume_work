@@ -40,7 +40,7 @@
                         }
                     },
                     "volume" : { "Ref" : "EncryptedVolume" },
-                    "instance_id" : { "Ref" : "myInstance1"}
+                    "stack_name" : { "Ref": "AWS::StackName" }
                 },
                 "DefaultOs": "Ubuntu 12.04 LTS",
                 "DefaultSshKeyName": "jonny-labs-west2"
