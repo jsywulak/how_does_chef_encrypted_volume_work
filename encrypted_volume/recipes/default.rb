@@ -19,6 +19,7 @@
 
 package "cryptsetup"
 
+Chef::Log.info "Node: #{node['encrypted_volume']['mounts']}"
 node['encrypted_volume']['mounts'].each_pair do |mount,options|
   Chef::Log.info "Processing #{mount} with ${options}"
   encrypted_volume mount do
