@@ -28,8 +28,8 @@
                     "deploy": {
                         "encrypted_volume": {
                             "mounts": {
-                                "/encrypted": {
-                                    "volume": "/dev/sda2",
+                                "/": {
+                                    "volume": "/dev/xvda1",
                                     "fstype": "ext2"
                                 }
                             }
