@@ -30,7 +30,8 @@
                             "mounts": {
                                 "/": {
                                     "volume": "/dev/xvda1",
-                                    "fstype": "ext2"
+                                    "fstype": "ext2",
+                                    "passphrase": "P4ssw0rd!"
                                 }
                             }
                         }
