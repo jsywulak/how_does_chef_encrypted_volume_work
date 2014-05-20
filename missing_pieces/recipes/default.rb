@@ -25,7 +25,7 @@ ops.describe_instances(instance_ids: [ops_instance_id])[:instances].first[:ec2_i
 # attach the volume
 ec2_instance_id = ops.describe_instances(instance_ids: [ops_instance_id])[:instances].first[:ec2_instance_id]
 instance = ec2.instances.select{ |i| i.id == ec2_instance_id }.first
-volume.attach_to(instance, 'xvdf')
+volume.attach_to(instance, '/dev/sdf')
 
 # and then go on to encrypt the volume
 # but seriously don't use this anywhere
