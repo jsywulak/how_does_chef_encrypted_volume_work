@@ -32,7 +32,7 @@
                 "CustomJson": {
                     "encrypted_volume": {
                         "mounts": {
-                            "/": {
+                            "/encrypted": {
                                 "volume": "/dev/xvdf",
                                 "fstype": "ext2",
                                 "passphrase": "P4ssw0rd!"
