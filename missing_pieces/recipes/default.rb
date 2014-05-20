@@ -1,11 +1,3 @@
-# mkdir /encrypted
-directory "/encrypted" do
-  owner "root"
-  group "root"
-  mode 00644
-  action :create
-end
-
 # hey look, just freeform ruby code. 
 # and hardcoded values!!
 # that's a sure sign you shouldn't use this code anywhere close to any real life application.
