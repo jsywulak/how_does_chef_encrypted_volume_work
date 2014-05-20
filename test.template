@@ -23,6 +23,10 @@
                     "Type": "git",
                     "Url": "https://github.com/jsywulak/how_does_chef_encrypted_volume_work.git"
                 },
+                "ConfigurationManager" : {
+                  "Name" : "Chef",
+                  "Version" : "11.10"
+                },
                 "UseCustomCookbooks": "true",
                 "CustomJson": {
                     "encrypted_volume": {
