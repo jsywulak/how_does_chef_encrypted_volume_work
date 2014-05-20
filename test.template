@@ -33,7 +33,7 @@
                     "encrypted_volume": {
                         "mounts": {
                             "/": {
-                                "volume": "/dev/xvda1",
+                                "volume": "/dev/xvdf",
                                 "fstype": "ext2",
                                 "passphrase": "P4ssw0rd!"
                             }
