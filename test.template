@@ -1,5 +1,5 @@
 {
-    "Description" : "Messing around the chef-encrypted_volume cookbook",
+    "Description": "Messing around the chef-encrypted_volume cookbook",
     "Resources": {
         "myStack": {
             "Type": "AWS::OpsWorks::Stack",
@@ -7,7 +7,7 @@
                 "Name": {
                     "Ref": "AWS::StackName"
                 },
-                "DefaultAvailabilityZone" : "us-west-2a",
+                "DefaultAvailabilityZone": "us-west-2a",
                 "ServiceRoleArn": {
                     "Fn::GetAtt": [
                         "OpsWorksServiceRole",
@@ -24,9 +24,9 @@
                     "Type": "git",
                     "Url": "https://github.com/jsywulak/how_does_chef_encrypted_volume_work.git"
                 },
-                "ConfigurationManager" : {
-                  "Name" : "Chef",
-                  "Version" : "11.10"
+                "ConfigurationManager": {
+                    "Name": "Chef",
+                    "Version": "11.10"
                 },
                 "UseCustomCookbooks": "true",
                 "CustomJson": {
@@ -39,8 +39,12 @@
                             }
                         }
                     },
-                    "volume" : { "Ref" : "EncryptedVolume" },
-                    "stack_name" : { "Ref": "AWS::StackName" }
+                    "volume": {
+                        "Ref": "EncryptedVolume"
+                    },
+                    "stack_name": {
+                        "Ref": "AWS::StackName"
+                    }
                 },
                 "DefaultOs": "Ubuntu 12.04 LTS",
                 "DefaultSshKeyName": "jonny-labs-west2"
@@ -64,7 +68,8 @@
                 ],
                 "CustomRecipes": {
                     "Deploy": [
-                        "missing_pieces","encrypted_volume"
+                        "missing_pieces",
+                        "encrypted_volume"
                     ]
                 }
             }
@@ -141,17 +146,16 @@
                     ]
                 },
                 "Path": "/",
-                "Policies" : {
-                        "PolicyName": "opsworks-service",
-                        "PolicyDocument": {
-                            "Statement": [
-                                {
-                                    "Effect": "Allow",
-                                    "Action": "*",
-                                    "Resource": "*"
-                                }
-                            ]
-                        }
+                "Policies": {
+                    "PolicyName": "opsworks-service",
+                    "PolicyDocument": {
+                        "Statement": [
+                            {
+                                "Effect": "Allow",
+                                "Action": "*",
+                                "Resource": "*"
+                            }
+                        ]
                     }
                 }
             }
@@ -167,12 +171,12 @@
                 ]
             }
         },
-        "EncryptedVolume" : {
-           "Type":"AWS::EC2::Volume",
-           "Properties" : {
-              "AvailabilityZone" : "us-west-2a",
-              "Size" : "10"
-           }
+        "EncryptedVolume": {
+            "Type": "AWS::EC2::Volume",
+            "Properties": {
+                "AvailabilityZone": "us-west-2a",
+                "Size": "10"
+            }
         }
     }
 }
