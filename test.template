@@ -1,5 +1,5 @@
 {
-    "Description": "Messing around the chef-encrypted_volume cookbook",
+    "Description": "Messing around the chef-encrypted_volume cookbook. This template makes no pretenses that its safe or secure. In fact, it's most likely the opposite. Don't try to use this for any instances that will live more than a few minutes, and definitely not for any instances that will contain any data that actually needs to be encrypted. (I'm looking at you, Brian. :)",
     "Resources": {
         "myStack": {
             "Type": "AWS::OpsWorks::Stack",
